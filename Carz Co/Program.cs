@@ -28,36 +28,50 @@ namespace Carz_Co
             bool mainloop = true;
             while (mainloop)
             {
-                Console.WriteLine("Välj ett alternativ\n1. Lägg till fordon\n2. Ta bort fordon\n3. Filtrera fordon\n4. Lista fordon\n5. Avsluta");
+                Console.WriteLine("Välj ett alternativ\n" +
+                    "1. Lägg till fordon\n" +
+                    "2. Ta bort fordon\n" +
+                    "3. Filtrera fordon\n" +
+                    "4. Lista fordon\n" +
+                    "5. Avsluta");
+
                 string input = Console.ReadLine();
                 bool isValid = int.TryParse(input, out int userChoice);
+
                 switch (userChoice)
                 {
                     case 1:
                         vehicles = Vehicle.AddVehicle(vehicles);
                         break;
+
                     case 2:
                         vehicles = Vehicle.RemoveVehicle(vehicles);
                         break;
+
                     case 3:
                         Console.WriteLine("Vilket typ av fordon vill du filtrera genom? (1. Bil, 2. Lastbil, 3. Motorcykel)");
                         string filteredVehicle = Console.ReadLine();
+
                         if (int.TryParse(filteredVehicle, out int number) && number == 1)
                         {
                             Vehicle.FilterVehicles<Car>(vehicles);
                         }
+
                         else if (number == 2)
                         {
                             Vehicle.FilterVehicles<Truck>(vehicles);
                         }
+
                         else if (number == 3)
                         {
                             Vehicle.FilterVehicles<Motorcycle>(vehicles);
                         }
                             break;
+
                     case 4:
                         Vehicle.PrintVehicleList(vehicles);
                         break;
+
                     case 5:
                         mainloop = false;
                         break;
